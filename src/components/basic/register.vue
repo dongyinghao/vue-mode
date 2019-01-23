@@ -3,7 +3,12 @@
     <section class="forms">
       <div class="formItem formItem-icon">
         <span :class="['iconfont', 'icon-email', {'error': $v.regist.email.$error}]">
-          <input @input="checkemail" v-model="regist.email" type="text" :placeholder="$t('邮箱地址')">
+          <input
+            @input="checkemail"
+            @blur="checkexist"
+            v-model="regist.email"
+            type="text"
+            :placeholder="$t('邮箱地址')">
           <i v-show="regist.email" @click="cleardata('email')"/>
         </span>
         <em class="errortip">{{ $t(emailtip) }}</em>
@@ -59,6 +64,7 @@
 <script>
 import { required, minLength, maxLength, sameAs, reg } from '@/plugin/validate'
 import regist from '@/api/basic/regist'
+import checkexist from '@/api/basic/checkexist'
 import _debounce from 'lodash/debounce'
 
 export default {
@@ -112,7 +118,7 @@ export default {
       } else {
         this.emailtip = ''
       }
-    }, 3000),
+    }, 300),
     checkpwd: _debounce(function () {
       const pwd = this.$v.regist.pwd
       pwd.$touch()
@@ -147,6 +153,20 @@ export default {
         this.codetip = ''
       }
     }, 300),
+    checkexist () {
+      if (!this.$v.regist.email.$invalid) {
+        checkexist({
+          email: this.regist.email
+        }).then(({data}) => {
+          if (data.code === 1) {
+            this.$msg(data.msg, 'error')
+            this.emailtip = data.msg
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+    },
     send () {
       this.countdownflag = true
     },

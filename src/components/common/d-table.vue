@@ -59,7 +59,8 @@ export default {
     list () {
       const arr = this.items
       if (this.sortField) {
-        if (isNaN(this.items[0][this.sortField].charAt(0))) {
+        const str = String(this.items[0][this.sortField]).charAt(0)
+        if (isNaN(str) && str !== '-' && str !== '+') {
           arr.sort((x, y) => { // 当x[this.sortField]为对象时，未做判断处理
             return this.sortrole * x[this.sortField].localeCompare(y[this.sortField])
           })

@@ -10,8 +10,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    // 开启前端代理功能，实现跨区域请求
+    // 比如我要调用'http://192.168.149.90:8080/basic/duty?time=2017'，直接写'/api/basic/duty?time=2017'即可
+    // 浏览器显示的请求地址为：http://localhost:3001/api/basic/duty?time=2017
+    proxyTable:
+      {
+        '/api': {
+          target: 'http://127.0.0.1:3000',  // 接口域名
+          changeOrigin: true,  //是否跨域
+          pathRewrite: {
+            '^/api': ''   // 因为在请求的 url 中加了前缀 '/api'，而原本的接口是没有这个前缀的,所以需要通过 pathRewrite 来重写地址，将前缀 '/api' 转为 '/'
+          }
+        }
+      },
     // Various Dev Server settings
     //host: 'localhost', // can be overwritten by process.env.HOST
     host: 'localhost', // can be overwritten by process.env.HOST

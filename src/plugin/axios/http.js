@@ -13,7 +13,7 @@ export default (option, datas) => {
 
   return axios({
     method: option.type || 'post',
-    url: host.local + option.url,
+    url: host.api + option.url,
     timeout: 2000,
     data,
     transformRequest: [data => Object.keys(data).map(d => `${d}=${data[d]}`).join('&')],

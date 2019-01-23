@@ -53,7 +53,7 @@ export default {
   &.toast-info {background-color: rgba(#5bc0de, 0.7);}
   &.toast-success {background-color: rgba(#5cb85c, 0.7);}
   &.toast-warn {background-color: rgba(#f0ad4e, 0.7);}
-  &.toast-error {background-color: rgba(#d9534f, 0.7);}
+  &.toast-error {background-color: rgba(#d9534f, 0.7);color: #fff;}
   i {
     margin-right: 8px;
     font-size: 22px;

@@ -146,8 +146,8 @@ a:active{
   &>span {
     display: block;
     height: 100%;
-    padding: 0 24px 0 6px;
     line-height: 38px;
+    white-space: nowrap;
     cursor: pointer;
     &::after {
       content: '';
@@ -162,7 +162,7 @@ a:active{
     position: absolute;
     left: -1px;
     top: 38px;
-    width: 80px;
+    width: 60px;
     border: 1px solid $themecolor;
     background-color: #fff;
     li {

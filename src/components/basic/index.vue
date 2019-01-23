@@ -41,8 +41,8 @@ export default {
       currentsort: 'price',
       sortrole: 1,
       search: '',
-      currentmarket: 'EOS',
-      markets: ['EOS', 'BTC', 'ETH', 'USDT'],
+      currentmarket: 'BTC',
+      markets: ['BTC', 'EOS', 'ETH', 'USDT'],
       fields: {
         pair: {
           label: '交易对'
@@ -115,6 +115,8 @@ export default {
     }
     .marketlist {
       padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
       header {
         margin-bottom: 20px;
         ul {

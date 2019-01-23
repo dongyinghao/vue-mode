@@ -10,16 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-// 新增接口配置 dyh-new
-const express = require('express')
-const app = express()
-const appData = require('../data.json') // 加载本地数据文件
-const login = appData.login
-const goods = appData.goods
-const ratings = appData.ratings
-const apiRoutes = express.Router()
-app.use('/api', apiRoutes)
-
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -32,26 +22,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
-    before(app) { // dyh-new
-      app.get('/api/login', (req, res) => {
-        res.json({
-          err: 0,
-          data: login
-        }) // 接口返回json数据，上面配置的数据seller就赋值给data请求后调用
-      }),
-      app.get('/api/goods', (req, res) => {
-        res.json({
-          err: 0,
-          data: goods
-        }) // 接口返回json数据，上面配置的数据seller就赋值给data请求后调用
-      }),
-      app.get('/api/ratings', (req, res) => {
-        res.json({
-          err: 0,
-          data: ratings
-        }) // 接口返回json数据，上面配置的数据seller就赋值给data请求后调用
-      })
-    },
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [

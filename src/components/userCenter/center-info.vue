@@ -3,7 +3,7 @@
     <h3>{{ $t('用户信息') }}</h3>
     <div>
       <div class="head">
-        <div></div>
+        <div><em class="iconfont icon-user"></em></div>
         <span>{{ $t('上传头像') }}</span>
       </div>
       <ul>
@@ -41,9 +41,15 @@ export default {
       top: 20px;
       text-align: center;
       &>div {
-        height: 180px;
+        height: 150px;
         width: 150px;
-        background-color: $themehover;
+        text-align: center;
+        border-bottom: 1px solid $themecolor;
+        em {
+          font-size: 80px;
+          color: #999;
+          line-height: 150px;
+        }
       }
       span {
         cursor: pointer;
