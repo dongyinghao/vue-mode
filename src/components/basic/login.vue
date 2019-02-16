@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <div style="width: 200px;height: 200px;">
-      <progerss-loop percentNum="62"></progerss-loop>
-    </div>
     <section class="forms">
       <div class="formItem formItem-icon">
         <span :class="['iconfont', 'icon-email', {'error': $v.login.email.$error}]">
