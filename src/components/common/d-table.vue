@@ -7,8 +7,8 @@
           v-if="it.sort"
           class='sort'
           @click.capture="switchSort(key)"
-        ><slot :name="key + '_H'" :data="{field: it, colum: key}">{{ it.label }}</slot></span>
-        <span v-else><slot :name="key + '_H'" :data="{field: it, colum: key}">{{ it.label }}</slot></span>
+        ><slot :name="key + '_H'" :data="{field: it, colum: key}">{{ $t(it.label) | cap }}</slot></span>
+        <span v-else><slot :name="key + '_H'" :data="{field: it, colum: key}">{{ $t(it.label) | cap }}</slot></span>
       </li>
     </ul>
     <div class="listbody">
@@ -132,11 +132,11 @@ export default {
           border-left: 6px solid transparent;
         }
         &:before {
-          border-top: 6px solid #ababab;
+          border-top: 6px solid #d3d3d3;
           top: 12px;
         }
         &:after {
-          border-bottom: 6px solid #ababab;
+          border-bottom: 6px solid #D3D3D3;
           top: 5px;
         }
         &.down {

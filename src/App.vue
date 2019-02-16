@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click="clickRoot">
+  <div id="app" @click="clickRoot" style="font-size: 16px;">
     <header-nav/>
     <div class="main">
       <transition :name="side">
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import _debounce from 'lodash/debounce'
+
 export default {
   data () {
     return {
@@ -22,8 +24,23 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.recalc()
+      let resizeEvt = 'onorientationchange' in window ? 'orientationchange' : 'resize'
+      window.addEventListener(resizeEvt, _debounce(this.recalc, 100), false)
+    },
     clickRoot () {
       this.$store.dispatch('clickRootNumAction', 1)
+    },
+    recalc () {
+      let html = document.documentElement
+      let clientWidth = html.clientWidth
+      if (!clientWidth) return
+      if (clientWidth >= 1920) {
+        html.style.fontSize = '100px'
+      } else {
+        html.style.fontSize = 100 * (clientWidth / 1920) + 'px'
+      }
     }
   },
   watch: {
@@ -32,6 +49,9 @@ export default {
       this.$store.commit('sethistorypage', from.name)
       this.side = to.name === historypage ? 'left' : 'right'
     }
+  },
+  mounted () {
+    this.init()
   }
 }
 </script>

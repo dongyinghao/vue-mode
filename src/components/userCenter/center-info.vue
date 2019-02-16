@@ -4,7 +4,10 @@
     <div>
       <div class="head">
         <div><em class="iconfont icon-user"></em></div>
-        <span>{{ $t('上传头像') }}</span>
+        <div class="update">
+          <input ref="upload" type="file" @change="getPortraitUrl">
+          <span>{{ $t('上传头像') }}</span>
+        </div>
       </div>
       <ul>
         <li><span>{{ $t('昵称') }}：</span><span>{{ $store.state.account.userInfo.nickName }}</span></li>
@@ -16,9 +19,33 @@
 </template>
 
 <script>
+// import updatePortrait from '@/api/usercenter/updatePortrait'
+import axios from 'axios'
 export default {
   data () {
     return {
+    }
+  },
+  methods: {
+    getPortraitUrl () {
+      const data = new FormData()
+      const ele = this.$refs.upload
+      data.append('file', ele.files[0])
+      data.append('langKey ', 'ZH_CN')
+      data.append('operatorId ', this.$store.state.account.userInfo.userId)
+      data.append('operator ', this.$store.state.account.userInfo.email)
+      axios.post(
+        'http://localhost:3001/api/api/usercenter/updatePortrait',
+        data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          onUploadProgress: function (res) {
+            console.log(res)
+          }
+        }
+      )
     }
   }
 }
@@ -31,7 +58,7 @@ export default {
     background-color: #f1f1f1;
     padding-bottom: 16px;
   }
-  &>div {
+  &>div{
     padding: 260px 20px 20px;
     position: relative;
     .head {
@@ -40,7 +67,7 @@ export default {
       left: 40px;
       top: 20px;
       text-align: center;
-      &>div {
+      &>div:first-child  {
         height: 150px;
         width: 150px;
         text-align: center;
@@ -51,12 +78,27 @@ export default {
           line-height: 150px;
         }
       }
-      span {
-        cursor: pointer;
-        padding: 6px 0;
-        display: inline-block;
-        &:hover {
-          color: $themehover;
+      div.update {
+        position: relative;
+        span {
+          padding: 6px 0;
+          display: inline-block;
+        }
+        form {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          z-index: 1;
+          input {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+          }
+          &:hover ~ span {
+            color: $themehover;
+          }
         }
       }
     }

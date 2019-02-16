@@ -7,7 +7,8 @@ const components = {
   loading: () => import(/* webpackChunkName: "root" */ '@/components/common/loading'), // 等待中
   countDown: () => import(/* webpackChunkName: "countdown" */ '@/components/common/countDown'), // 倒计时
   toast: () => import(/* webpackChunkName: "toast" */ '@/components/common/toast'), // 全局提示
-  dTable: () => import(/* webpackChunkName: "table" */ '@/components/common/d-table') // 自定义表格
+  dTable: () => import(/* webpackChunkName: "table" */ '@/components/common/d-table'), // 自定义表格
+  progerssLoop: () => import(/* webpackChunkName: "table" */ '@/components/common/progerssLoop') // 圆环百分比进度图
 }
 
 for (let key in components) {

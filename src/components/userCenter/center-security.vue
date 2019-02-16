@@ -1,6 +1,9 @@
 <template>
   <div class="c-security">
     <h3>{{ $t('安全中心') }}</h3>
+    <div style="width: 100px;height: 100px;margin: 200px auto;">
+      <progerss-loop :percentNum="percentNum"></progerss-loop>
+    </div>
   </div>
 </template>
 
@@ -8,6 +11,7 @@
 export default {
   data () {
     return {
+      percentNum: 20
     }
   }
 }

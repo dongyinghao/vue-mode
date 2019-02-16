@@ -7,5 +7,5 @@ export default (val) => {
   const numArr = e.match(rex)
   const n = Number('' + numArr[1] + (numArr[2] || ''))
   const num = '0.' + String(Math.pow(10, Number(numArr[3]) - 1)).substr(1) + n
-  return num.replace(/0*$/, '') // 可能出现0.0001540000000的情况
+  return num.replace(/0*$/, '') // 防止可能出现0.0001540000000的情况
 }

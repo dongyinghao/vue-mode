@@ -143,12 +143,13 @@ export default {
           line-height: 72px;
           &:hover a{
             background-color: $themecolor;
+            padding: 2px 5px;
             color: #fff;
           }
           a{
             color: $themecolor;
             font-size: 18px;
-            /*padding: 0 6px;*/
+            padding: 2px 5px;
             &:active {
               background-color: $themehover;
             }

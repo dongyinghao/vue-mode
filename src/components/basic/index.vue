@@ -21,7 +21,7 @@
           <span :style=" data.index === 3 ? testcss : ''">{{ data.value }} %</span>
         </template>
         <template slot="price_H" slot-scope="{data}">
-          <span style="color: red;">{{ data.field.label }}</span>
+          <span style="color: red;">{{ $t(data.field.label) | cap }}</span>
         </template>
       </d-table>
     </div>

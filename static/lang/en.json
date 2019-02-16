@@ -42,5 +42,11 @@
   "两次输入的密码不一致": "the passwords entered do not match",
   "长度为6位数": "the length is 6 digits",
   "请登录后查看": "Please log in and check",
+  "最新价": "last Price",
+  "交易对": "trade",
+  "24H涨跌": "24H change",
+  "24H最高": "24H heigh",
+  "成交量": "turn over",
+  "24H最低": "24H low",
   "test": "test"
 }
