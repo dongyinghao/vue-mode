@@ -1,5 +1,5 @@
 const apis = {
-  local: '/api/',
+  local: '/',
   dev: 'http://10.45.4.176:8081/',
   prod: 'http://10.45.4.176:8081/'
 }

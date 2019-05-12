@@ -12,7 +12,6 @@ export const guard = store => {
   router.beforeEach(function (to, from, next) {
     beforeEach(to, from, next, store)
   })
-
   router.afterEach(function (to, from) {
     afterEach(to, from, store)
   })

@@ -3,7 +3,10 @@
     <h3>{{ $t('用户信息') }}</h3>
     <div>
       <div class="head">
-        <div><em class="iconfont icon-user"></em></div>
+        <div>
+          <img v-if="url" :src="url" alt="">
+          <em v-else class="iconfont icon-user"></em>
+        </div>
         <div class="update">
           <input ref="upload" type="file" @change="getPortraitUrl">
           <span>{{ $t('上传头像') }}</span>
@@ -24,6 +27,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
+      url: ''
     }
   },
   methods: {
@@ -45,7 +49,11 @@ export default {
             console.log(res)
           }
         }
-      )
+      ).then(({ data }) => {
+        this.url = data.url
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }
@@ -72,6 +80,10 @@ export default {
         width: 150px;
         text-align: center;
         border-bottom: 1px solid $themecolor;
+        img {
+          width: 100%;
+          height: 100%;
+        }
         em {
           font-size: 80px;
           color: #999;
@@ -80,9 +92,23 @@ export default {
       }
       div.update {
         position: relative;
+        width: 150px;
+        height: 32px;
+        text-align: center;
         span {
-          padding: 6px 0;
-          display: inline-block;
+          line-height: 32px;
+          cursor: pointer;
+        }
+        input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          &:hover ~ span {
+            color: $themehover;
+          }
         }
         form {
           position: absolute;

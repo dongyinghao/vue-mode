@@ -1,5 +1,4 @@
 // 将科学计数法转换成普通数字形式的字符串
-
 export default (val) => {
   const e = String(val)
   let rex = /^([0-9])\.?([0-9]*)e-([0-9])/

@@ -1,112 +1,117 @@
 <template>
-  <div class="container">
-    <section class="forms">
-      <h1>交易中心</h1>
-    </section>
+  <div class="percentloop">
+    <div class="circle-left">
+      <div ref="leftcontent"></div>
+    </div>
+    <div class="circle-right">
+      <div ref="rightcontent"></div>
+    </div>
+    <div class="number">{{ percent }} %</div>
   </div>
 </template>
 
 <script>
-// import _reduce from 'lodash/reduce'
 export default {
+  props: {
+    percentNum: {
+      type: [String, Number],
+      default: 0
+    }
+  },
   data () {
     return {
+      percent: this.percentNum,
+      initDeg: 0
+    }
+  },
+  methods: {
+    goRotate (deg) {
+      let timeId = setInterval(() => {
+        if (Number(deg) === Number(this.initDeg)) {
+          clearInterval(timeId)
+        } else if (deg > this.initDeg) {
+          this.initDeg += 1
+          if (this.initDeg > 180) {
+            this.$refs.rightcontent.style.transform = 'rotate(' + (this.initDeg - 180) + 'deg)'
+          } else {
+            this.$refs.leftcontent.style.transform = 'rotate(' + this.initDeg + 'deg)'
+          }
+        } else {
+          this.initDeg -= 1
+          if (this.initDeg >= 180) {
+            this.$refs.rightcontent.style.transform = 'rotate(' + (this.initDeg - 180) + 'deg)'
+          } else {
+            this.$refs.leftcontent.style.transform = 'rotate(' + this.initDeg + 'deg)'
+          }
+        }
+      }, 0)
+    }
+  },
+  computed: {
+    getDeg () {
+      let deg = 0
+      if (this.percent >= 100) {
+        deg = 360
+      } else {
+        deg = parseInt(360 * this.percent / 100)
+      }
+      return deg
     }
   },
   mounted () {
+    this.goRotate(this.getDeg)
   },
-  methods: {
+  watch: {
+    'percentNum': function (val) {
+      this.percent = val
+      this.goRotate(this.getDeg)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/css/variate";
-.container {
-  max-width: 1200px;
-  margin: 60px auto;
-  background-color: #fff;
-  padding: 140px 60px 0;
-  flex: 1 0 auto;
-  .forms {
-    width: 400px;
-    margin: 0 auto;
-    .formItem {
-      margin-bottom: 16px;
-      height: 70px;
-      span {
-        border: 1px solid $themecolor;
-        display: inline-block;
-        height: 50px;
+  .percentloop {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    .circle-left, .circle-right {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background-color: red;
+      overflow: hidden;
+      &>div {
         width: 100%;
-        position: relative;
-        font-size: 30px;
-        color: #8a8a8a;
-        &.error {
-          border: 1px solid $error;
-        }
-        &::before {
-          position: absolute;
-          height: 30px;
-          left: 10px;
-          top: 0;
-          bottom: 0;
-          margin: auto 0;
-        }
-        input {
-          height: 100%;
-          width: 100%;
-          padding: 0 38px 0 48px;
-          font-size: 18px;
-          display: inherit;
-          &:focus {
-            background-color: #fff;
-          }
-        }
-        i {
-          display: inline-block;
-          position: absolute;
-          right: 8px;
-          height: 20px;
-          width: 20px;
-          top: 0;
-          bottom: 0;
-          margin: auto 0;
-          border: 1px solid #999;
-          border-radius: 50%;
-          cursor: pointer;
-          &:before, &:after {
-            content: '';
-            position: absolute;
-            right: 3px;
-            top: 9px;
-            height: 1px;
-            width: 12px;
-            background-color: #666;
-            transform: rotate(45deg);
-          }
-          &:after {
-            transform: rotate(-45deg);
-          }
-        }
-      }
-      .errortip {
-        color: $error;
-        font-size: 12px;
+        height: 100%;
+        background-color: #8a8a8a;
+        transform-origin: right center;
+        /*transition: all .5s linear;*/
       }
     }
-    .register {
-      margin-top: 20px;
-      a {
-        font-size: 18px;
-        color: $themecolor;
+    .circle-right {
+      left: 50%;
+      &>div {
+        transform-origin: left center;
       }
+    }
+    .number {
+      position: absolute;
+      top: 9%;
+      bottom: 9%;
+      left: 9%;
+      right: 9%;
+      background-color: #fff;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
     }
   }
-  .btnsbox {
-    span {
-      margin-right: 12px;
-    }
-  }
-}
 </style>

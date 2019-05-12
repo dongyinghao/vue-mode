@@ -17,7 +17,7 @@
           <router-link :to="{name: 'test'}">{{ $t('新闻') | cap }}</router-link>
         </li>
         <li>
-          <a href="#">{{ $t('关于我们') | cap }}</a>
+          <router-link :to="{name: 'aboutUs'}">{{ $t('关于我们') | cap }}</router-link>
         </li>
       </ul>
     </nav>
@@ -44,6 +44,10 @@
 
 <script>
 export default {
+  data () {
+    return {
+    }
+  },
   computed: {
     clickRootNum () {
       return this.$store.state.system.clickRootNum

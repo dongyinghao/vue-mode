@@ -24,6 +24,7 @@
           <span style="color: red;">{{ $t(data.field.label) | cap }}</span>
         </template>
       </d-table>
+      <p style="text-align: center;font-size: 18px;margin-top: 60px;" v-if="!items.length">No Data</p>
     </div>
   </div>
 </template>
@@ -33,6 +34,7 @@ import initialize from '../../api/basic/initialize'
 import _filter from 'lodash/filter'
 
 export default {
+  inject: ['reload'],
   data () {
     return {
       testcss: { 'color': 'red', 'font-size': '18px', 'font-weight': 'bold' },
@@ -84,7 +86,16 @@ export default {
   mounted () {
     this.init()
   },
+  components: {
+  },
   methods: {
+    rest () {
+      // 实现页面重载的方法一
+      this.reload() // 不会刷新页面，只重新渲染本路由页面,会触发生命周期钩子函数
+
+      // 实现页面重载的方法二
+      this.$router.go(0) // 会刷新页面
+    },
     init () {
       this.getmarketdata()
     },

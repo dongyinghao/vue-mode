@@ -22,7 +22,7 @@ export default {
       meta: {
         title: 'test'
       },
-      component: () => import(/* webpackChunkName: 'test' */ '@/components/test/test')
+      component: () => import(/* webpackChunkName: 'test' */ '@/components/test/test.vue')
     },
     {
       path: '/login.html',
@@ -48,6 +48,15 @@ export default {
         auth: true
       },
       component: () => import(/* webpackChunkName: 'basic' */ '@/components/trade/trade')
+    },
+    {
+      path: '/aboutUs.html',
+      name: 'aboutUs',
+      meta: {
+        title: '关于我们',
+        auth: false
+      },
+      component: () => import(/* webpackChunkName: 'basic' */ '@/components/basic/aboutUs')
     },
     {
       path: '/usercenter/',

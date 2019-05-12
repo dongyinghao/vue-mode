@@ -1,25 +1,18 @@
-import Vue from 'vue'
 import toast from '@/components/common/toast'
 
-const Toast = Vue.extend(toast)
-function init (option, type) {
-  if (typeof option === 'string' && typeof type === 'string') {
-    option = {
-      msg: option,
-      type: type
+export default {
+  install: function (Vue, option = {}) {
+    Vue.prototype.$msg = function (msg, type, time) {
+      if (msg) option.msg = msg
+      if (type) option.type = type
+      if (time) option.timeout = time
+      const Toast = Vue.extend(toast)
+      const instance = new Toast({
+        data: option
+      }).$mount()
+      const ele = document.querySelector('.d-toast')
+      if (ele) document.body.removeChild(ele)
+      document.body.appendChild(instance.$el)
     }
   }
-  if (typeof option === 'string' && typeof type === 'undefined') {
-    option = {
-      msg: option
-    }
-  }
-  const instance = new Toast({
-    data: option
-  }).$mount()
-  const ele = document.querySelector('.d-toast')
-  if (ele) document.body.removeChild(ele)
-  document.body.appendChild(instance.$el)
 }
-
-Vue.prototype.$msg = init

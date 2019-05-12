@@ -1,7 +1,7 @@
 export default function (to, from, next, store) {
   if (to.matched[0].meta.auth && !store.state.account.logged) {
     console.log(window.vm)
-    store._vm.$msg(window.vm.$t('请登录后查看'), 'warn')
+    store._vm.$msg(window.vm.$t('请登录后查看'), 'warning')
     next({path: '/login.html', query: {redirect: to.name}})
     return
   }

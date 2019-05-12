@@ -3,7 +3,7 @@
     <header-nav/>
     <div class="main">
       <transition :name="side">
-        <router-view class="animate"/>
+        <router-view v-if="isRouterAlive" class="animate"/>
       </transition>
     </div>
     <footer-nav/>
@@ -17,13 +17,25 @@
 import _debounce from 'lodash/debounce'
 
 export default {
+  provide () { // 配合子路由实现页面重载
+    return {
+      reload: this.reload
+    }
+  },
   data () {
     return {
+      isRouterAlive: true, // 配合子路由实现页面重载
       side: 'right',
       loadflag: false
     }
   },
   methods: {
+    reload () { // 配合子路由实现页面重载
+      this.isRouterAlive = false
+      this.$nextTick(function () {
+        this.isRouterAlive = true
+      })
+    },
     init () {
       this.recalc()
       let resizeEvt = 'onorientationchange' in window ? 'orientationchange' : 'resize'

@@ -10,7 +10,7 @@ import Vuelidate from 'vuelidate'
 import store from './config/vuex/store'
 import './config/vue/globalComponents'
 import './config/vue/filter'
-import './plugin/toast'
+import toast from './plugin/toast'
 
 // 样式文件
 import './assets/css/common.scss'
@@ -19,8 +19,8 @@ import './assets/iconfont/iconfont.css'
 Vue.use(vueAxios, axios)
 Vue.use(VueI18n)
 Vue.use(Vuelidate)
-
-guard(store) // todo 待改进写法
+Vue.use(toast)
+guard(store)
 
 const i18n = new VueI18n({ // todo 待改进写法
   locale: 'zh', // 语言标识

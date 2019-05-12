@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-show="flag" class="d-toast" :class="'toast-' + currenttype">
+    <div v-show="flag" class="d-toast" ref="d_toast" :class="'toast-' + currenttype">
       <i :class="['iconfont', 'icon-' + currenttype]"></i><span>{{ msg }}</span><em @click="colse"></em>
     </div>
   </transition>
@@ -12,10 +12,10 @@ export default {
       msg: '',
       autocolse: true,
       hasclose: true,
-      timeout: 1000,
+      timeout: 2000,
       type: 'info',
       defaultType: ['info', 'error', 'warn', 'success'],
-      flag: true
+      flag: false
     }
   },
   methods: {
@@ -29,18 +29,29 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
+    this.flag = true
+    let timeId = setTimeout(() => {
       this.flag = false
     }, this.timeout)
+
+    this.$refs.d_toast.onmouseenter = () => {
+      clearTimeout(timeId)
+    }
+
+    this.$refs.d_toast.onmouseleave = () => {
+      timeId = setTimeout(() => {
+        this.flag = false
+      }, this.timeout)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 .d-toast {
-  transition: all .3s linear;
   background-color: #fff;
   position: fixed;
+  transition: all .3s;
   top: 80px;
   padding: 10px;
   text-align: center;
@@ -50,17 +61,17 @@ export default {
   margin: 0 auto;
   border-radius: 6px;
   font-size: 16px;
-  &.toast-info {background-color: rgba(#5bc0de, 0.7);}
-  &.toast-success {background-color: rgba(#5cb85c, 0.7);}
-  &.toast-warn {background-color: rgba(#f0ad4e, 0.7);}
-  &.toast-error {background-color: rgba(#d9534f, 0.7);color: #fff;}
+  &.toast-info {background-color: rgba(#5bc0de, 0.8);}
+  &.toast-success {background-color: rgba(#20a98d, 0.8);}
+  &.toast-warn {background-color: rgba(#f0ad4e, 0.8);}
+  &.toast-error {background-color: rgba(#d9534f, 0.8);color: #fff;}
   i {
     margin-right: 8px;
     font-size: 22px;
     line-height: 20px;
     vertical-align: -2px;
     &.icon-info {color: #bbb7c2;}
-    &.icon-success {color: #09b568;}
+    &.icon-success {color: #1a7a63;}
     &.icon-warn {color: #fcbf4a;}
     &.icon-error {color: #f00;}
   }
@@ -91,10 +102,8 @@ export default {
     }
   }
 }
-.fade-enter{
+.fade-enter, .fade-leave-to{
   transform: translateY(-100px);
-}
-.fade-leave-to {
   opacity: 0;
 }
 </style>
