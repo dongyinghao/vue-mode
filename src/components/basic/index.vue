@@ -77,13 +77,14 @@ export default {
       return Object.keys(this.fields)
     },
     list () {
-      const arr = this.items
-      return _filter(arr, it => {
+      const obj = this.items
+      if (!Object.keys(obj).length) return []
+      return _filter(obj, it => {
         return it.pair.s1 === this.currentmarket && it.pair.s0.indexOf(this.search.toUpperCase()) > -1
       })
     }
   },
-  mounted () {
+  created () {
     this.init()
   },
   components: {
@@ -101,17 +102,28 @@ export default {
     },
     getmarketdata () {
       initialize().then(({data}) => {
-        this.items = data.data
+        this.items = data
+        this.$store.commit('settest', 'test')
       }).catch((err) => {
         console.log(err)
       })
     },
     switchmarket (val) {
       this.currentmarket = val
+      this.testcss.color = '新属性'
     },
     rowClick (i, item) {
       console.log(i)
       console.log(item)
+    },
+    watchTest () {
+      console.log(9977)
+    }
+  },
+  watch: {
+    'vuexTest': {
+      handler: 'watchTest',
+      immediate: true
     }
   }
 }

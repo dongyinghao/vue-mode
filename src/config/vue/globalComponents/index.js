@@ -11,7 +11,7 @@ const components = {
   dProgerssLoop: () => import(/* webpackChunkName: "table" */ '@/components/common/d-progerssLoop'), // 圆环百分比进度图
   dUpload: () => import(/* webpackChunkName: "table" */ '@/components/common/d-upload'), // 圆环百分比进度图
   dSearch: () => import(/* webpackChunkName: "table" */ '@/components/common/d-search'), // 仿百度搜索框
-  dEchart: () => import(/* webpackChunkName: "table" */ '@/components/common/d-echart') // 仿百度搜索框
+  dEchart: () => import(/* webpackChunkName: "table" */ '@/components/common/d-echart') // 横向条形图
 }
 
 for (let key in components) {

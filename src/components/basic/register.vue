@@ -182,7 +182,7 @@ export default {
         pwd: this.regist.pwd,
         code: this.regist.code
       }).then(({ data }) => {
-        if (!data.err) {
+        if (!data.error) {
           this.loadingflag = false
           this.repeat = false
           this.$msg(data.msg, 'success')

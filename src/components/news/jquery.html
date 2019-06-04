@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .test {
+      width: 50%;
+      padding: 20px;
+      border: 1px solid blue;
+    }
+    ul>li{
+      display: inline-block;
+      list-style: none;
+      border: 1px solid red;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+<div id="box">box</div>
+<div class="test">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<script>
+  function $(id) {
+    let init = function (id) {
+      this.ele = document.getElementById(id)
+    };
+    init.prototype.css = function (key, value) {
+      this.ele.style[key] = value
+      return instance
+    };
+    init.prototype.html = function (value) {
+      this.ele.innerHTML = value
+      return instance
+    }
+    const instance = new init(id)
+    return instance
+  }
+  $('box').css('color', 'red').html('<b>pro</b>')
+</script>
+</body>
+</html>

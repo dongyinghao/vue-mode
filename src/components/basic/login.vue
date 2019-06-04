@@ -90,9 +90,8 @@ export default {
         .then(({ data }) => {
           this.loadingflag = false
           this.repeat = false
-          if (!data.err) {
-            if (data.code === 0) {
-              this.$msg(data.msg, 'success')
+          if (data.error === '0') {
+            if (data.code === '0') {
               this.$store.commit('setlogged', true)
               this.$store.commit('setUserInfo', data.data)
               this.$router.push({name: this.$route.query.redirect || 'info'})
@@ -117,6 +116,7 @@ export default {
 
 <style scoped lang="scss">
 @import "../../assets/css/variate";
+
 .container {
   max-width: 1200px;
   margin: 60px auto;
