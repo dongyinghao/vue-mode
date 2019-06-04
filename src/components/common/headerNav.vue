@@ -13,10 +13,10 @@
         <li :class="{'active': $route.fullPath.indexOf('usercenter') > -1}">
           <router-link :to="{path: '/usercenter'}">{{ $t('用户中心') | cap }}</router-link>
         </li>
-        <li>
-          <router-link :to="{name: 'test'}">{{ $t('新闻') | cap }}</router-link>
+        <li :class="{'active': $route.name === 'news'}">
+          <router-link :to="{name: 'news'}">{{ $t('新闻') | cap }}</router-link>
         </li>
-        <li>
+        <li :class="{'active': $route.name === 'aboutUs'}">
           <router-link :to="{name: 'aboutUs'}">{{ $t('关于我们') | cap }}</router-link>
         </li>
       </ul>

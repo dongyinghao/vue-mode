@@ -10,18 +10,19 @@ import Vuelidate from 'vuelidate'
 import store from './config/vuex/store'
 import './config/vue/globalComponents'
 import './config/vue/filter'
-import toast from './plugin/toast'
-
+import loading from './plugin/loading'
 // 样式文件
-import './assets/css/common.scss'
-import './assets/iconfont/iconfont.css'
 
-// test22
+import './assets/css/common.scss'
+import './assets/css/test.less'
+import './assets/iconfont/iconfont.css'
+import toast from './plugin/toast'
 
 Vue.use(vueAxios, axios)
 Vue.use(VueI18n)
 Vue.use(Vuelidate)
 Vue.use(toast)
+Vue.use(loading)
 guard(store)
 
 const i18n = new VueI18n({ // todo 待改进写法
