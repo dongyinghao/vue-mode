@@ -17,12 +17,12 @@ export default {
       component: () => import(/* webpackChunkName: 'index' */ '@/components/basic/index')
     },
     {
-      path: '/test',
-      name: 'test',
+      path: '/news',
+      name: 'news',
       meta: {
-        title: 'test'
+        title: 'news'
       },
-      component: () => import(/* webpackChunkName: 'test' */ '@/components/test/test.vue')
+      component: () => import(/* webpackChunkName: 'newsnews' */ '@/components/news/news.vue')
     },
     {
       path: '/login.html',
@@ -61,7 +61,7 @@ export default {
     {
       path: '/usercenter/',
       meta: {
-        auth: true
+        auth: false
       },
       component: () => import(/* webpackChunkName: 'usercenter' */ '@/components/userCenter/usercenter'),
       children: [
@@ -89,6 +89,11 @@ export default {
           path: 'verification.html',
           name: 'verification',
           component: () => import(/* webpackChunkName: 'usercenter' */ '@/components/userCenter/center-verification')
+        },
+        {
+          path: 'chart.html',
+          name: 'chart',
+          component: () => import(/* webpackChunkName: 'usercenter' */ '@/components/userCenter/center-chart')
         }
       ]
     }
