@@ -16,6 +16,8 @@ import toast from './plugin/toast'
 import './assets/css/common.scss'
 import './assets/iconfont/iconfont.css'
 
+// test
+
 Vue.use(vueAxios, axios)
 Vue.use(VueI18n)
 Vue.use(Vuelidate)
