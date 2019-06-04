@@ -1,8 +1,8 @@
 <template>
   <div class="c-setting">
-    <h3>{{ $t('设置') }}</h3>
-    <div style="width: 60px;height: 60px;margin: 200px auto;">
-      <progerss-loop :percentNum="percentNum"></progerss-loop>
+    <h3>{{ $t('圆环进度条') }}</h3>
+    <div style="width: 160px;height: 160px;margin: 200px auto;">
+      <d-progerss-loop :percentNum="percentNum" speed="5"></d-progerss-loop>
     </div>
   </div>
 </template>

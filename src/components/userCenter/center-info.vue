@@ -13,9 +13,9 @@
         </div>
       </div>
       <ul>
-        <li><span>{{ $t('昵称') }}：</span><span>{{ $store.state.account.userInfo.nickName }}</span></li>
-        <li><span>{{ $t('邮箱') }}：</span><span>{{ $store.state.account.userInfo.email }}</span></li>
-        <li><span>{{ $t('上次登录时间') }}：</span><span>{{ $store.state.account.lasttime | utc('YYYY/MM/DD hh:mm:ss') }}</span></li>
+        <li><span>{{ $t('昵称') }}：</span><span>{{ $store.state.account.userInfo && $store.state.account.userInfo.nickName }}</span></li>
+        <li><span>{{ $t('邮箱') }}：</span><span>{{ $store.state.account.userInfo && $store.state.account.userInfo.email }}</span></li>
+        <li><span>{{ $t('上次登录时间') }}：</span><span>{{ $store.state.account.userInfo && $store.state.account.lasttime | utc('YYYY/MM/DD hh:mm:ss') }}</span></li>
       </ul>
     </div>
   </div>
@@ -70,11 +70,12 @@ export default {
     padding: 260px 20px 20px;
     position: relative;
     .head {
-      border: 1px solid $gray-2;
+      border: 1px solid $themecolor;
       position: absolute;
       left: 40px;
       top: 20px;
       text-align: center;
+      box-shadow: 0 0 8px 1px #999;
       &>div:first-child  {
         height: 150px;
         width: 150px;

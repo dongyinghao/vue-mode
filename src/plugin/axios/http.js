@@ -14,6 +14,7 @@ export default (option, datas) => {
   return axios({
     method: option.type || 'post',
     url: host.api + option.url,
+    loading: option.loading,
     timeout: 2000,
     data,
     transformRequest: [data => Object.keys(data).map(d => `${d}=${data[d]}`).join('&')],

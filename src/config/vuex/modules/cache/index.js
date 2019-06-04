@@ -2,7 +2,8 @@ import mutations from './mutations'
 
 const state = {
   lang: 'zh',
-  historypage: {}
+  historypage: {},
+  test: 'd'
 }
 
 export default {

@@ -8,7 +8,10 @@ const components = {
   countDown: () => import(/* webpackChunkName: "countdown" */ '@/components/common/countDown'), // 倒计时
   toast: () => import(/* webpackChunkName: "toast" */ '@/components/common/toast'), // 全局提示
   dTable: () => import(/* webpackChunkName: "table" */ '@/components/common/d-table'), // 自定义表格
-  progerssLoop: () => import(/* webpackChunkName: "table" */ '@/components/common/progerssLoop') // 圆环百分比进度图
+  dProgerssLoop: () => import(/* webpackChunkName: "table" */ '@/components/common/d-progerssLoop'), // 圆环百分比进度图
+  dUpload: () => import(/* webpackChunkName: "table" */ '@/components/common/d-upload'), // 圆环百分比进度图
+  dSearch: () => import(/* webpackChunkName: "table" */ '@/components/common/d-search'), // 仿百度搜索框
+  dEchart: () => import(/* webpackChunkName: "table" */ '@/components/common/d-echart') // 仿百度搜索框
 }
 
 for (let key in components) {

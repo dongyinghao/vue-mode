@@ -1,6 +1,9 @@
 <template>
   <div class="c-verification">
-    <h3>{{ $t('身份认证') }}</h3>
+    <h3>{{ $t('搜索框') }}</h3>
+    <div>
+      <d-search/>
+    </div>
   </div>
 </template>
 

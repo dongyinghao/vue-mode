@@ -5,5 +5,8 @@ export default {
   },
   sethistorypage (state, page) {
     state.historypage = page
+  },
+  settest (state, r) {
+    state.test = r
   }
 }

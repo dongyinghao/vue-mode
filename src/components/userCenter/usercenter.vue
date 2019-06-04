@@ -23,9 +23,10 @@ export default {
     return {
       titlelist: {
         infoTrue: '用户信息',
-        setting: '设置',
-        security: '安全中心',
-        verification: '身份认证'
+        setting: '圆环进度条',
+        security: '上传图片',
+        verification: '搜索框',
+        chart: '条形图'
       },
       currenttitle: 'infoTrue'
     }
@@ -57,20 +58,21 @@ export default {
       ul {
         padding: 10px 16px;
         li {
-          line-height: 50px;
+          line-height: 40px;
           border-bottom: 1px solid #999;
           cursor: pointer;
           a {
             color: #666;
             display: inline-block;
             width: 100%;
+            font-size: 14px;
           }
           &:hover a {
             color: $themecolor;
           }
           &.active a{
             color: $themecolor;
-            font-size: 18px;
+            font-size: 16px;
           }
           &:active a{
             transform: translateY(1px);
