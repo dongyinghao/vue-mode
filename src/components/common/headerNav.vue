@@ -1,6 +1,6 @@
 <template>
   <div class="site-header">
-    <div class="logo"><img src="@/assets/icons/logo.png" alt=""></div>
+    <div class="logo"><img src="@/assets/icons/logo11.png" alt=""></div>
     <nav class="title">
       <em class="iconfont icon-justify" @click.stop="toggle('title')"></em>
       <ul ref="title">
@@ -95,8 +95,12 @@ export default {
     background-color: #fff;
     align-items: center;
     .logo{
-      margin-left: 10px;
-      height: 52px;
+      margin-left: 20px;
+      height: 48px;
+      width: 48px;
+      img {
+        width: 100%;
+      }
     }
     .aboutlogin{
       width: 250px;
